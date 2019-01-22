@@ -1,7 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import config from '../config'
 import './add-city.css'
+const debounce = require('lodash.debounce')
 
 export default class AddCity extends Component {
   constructor(props) {
@@ -10,6 +12,7 @@ export default class AddCity extends Component {
     this.onChange = this.onChange.bind(this)
     this.onClose = this.onClose.bind(this)
     this.onKeyDown = this.onKeyDown.bind(this)
+    this.fetchTypeahead = debounce(this.fetchTypeahead.bind(this), 300)
   }
   componentDidMount() {
     document.addEventListener('keydown', this.onKeyDown)
@@ -23,16 +26,40 @@ export default class AddCity extends Component {
   onKeyDown(event) {
     if (this.props.active && event.key === 'Escape') {
       this.onClose()
-    }
+    } 
   }
   setValue(value) {
-    let typeahead = []
+    this.setState({value})
+    this.fetchTypeahead()
+  }
+
+  fetchTypeahead () {
+    const value = this.state.value
     if (value.length > 3) {
-      typeahead = this.props.DB.filter(e =>
-        e.name.toLowerCase().includes(value.toLowerCase())
-      ).slice(0, 50)
+      const url = config.APIXU_URL +
+      '/search.json' + 
+      '?key=' +
+      config.APIXU_KEY +
+      '&q=' + 
+      value
+      fetch(url)
+        .then(response => response.json())
+        .then((cities) => {
+          const typeahead = cities.map(city => {
+            const parts = city.name.split(',')
+            return {
+              id: city.id,
+              fullName: city.name,
+              name: parts[0],
+              lat: city.lat,
+              lng: city.lon,
+            }
+          })
+          this.setState({ typeahead })
+        })
+    } else {
+      this.setState({ typeahead: [] })
     }
-    this.setState({ value, typeahead })
   }
 
   onClose() {
@@ -45,15 +72,16 @@ export default class AddCity extends Component {
       const items = this.state.typeahead.map((item, index) => {
         const onSelect = () => {
           const city = { ...item }
-          city.key =
-            String(city.name) + '.' + String(city.lat) + '.' + String(city.lng)
           city.image = '/images/' + Math.ceil(Math.random() * 26) + '.jpg'
           this.props.onSubmit(city)
-          this.setValue('')
+          this.setState({
+            value: '',
+            typeahead: []
+          })
         }
         return (
           <a key={index} className="typeahead-item" onClick={onSelect}>
-            {item.name}, {item.country}
+            {item.fullName}
           </a>
         )
       })
@@ -86,7 +114,6 @@ export default class AddCity extends Component {
 }
 
 AddCity.propTypes = {
-  DB: PropTypes.array.isRequired,
   active: PropTypes.bool.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,

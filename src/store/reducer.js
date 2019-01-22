@@ -4,11 +4,11 @@ function cityReducer(state = [], action) {
   switch (action.type) {
     case consts.addCity:
       const city = { ...action.payload }
-      const cities = [...state].filter(e => e.key !== city.key)
+      const cities = [...state].filter(e => e.id !== city.id)
       cities.push(city)
       return cities
     case consts.removeCity:
-      return [...state].filter(e => e.key !== action.payload)
+      return [...state].filter(e => e.id !== action.payload)
   }
   return state
 }
@@ -33,4 +33,4 @@ function withPersistence(reducer, key) {
   }
 }
 
-export default withPersistence(cityReducer, 'cities')
+export default withPersistence(cityReducer, 'cities-db')

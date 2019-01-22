@@ -37,9 +37,12 @@ export default class ViewCity extends Component {
     }
   }
   requestApi() {
+    console.log(this.props.match)
+    return
     if (this.props.city) {
       const url =
         config.APIXU_URL +
+        '/current.json' + 
         '?key=' +
         config.APIXU_KEY +
         '&q=' +
@@ -66,13 +69,16 @@ export default class ViewCity extends Component {
     }
   }
   render() {
+    return ( 
+      <div>HUI44444 </div>
+    )
     const city = this.props.city
     const current = this.state
     const onRemove = () => {
-      this.props.onRemove(city.key)
+      this.props.onRemove(city.id)
     }
-    const locationUrl = `https://maps.google.com/?q=${city.lat},${city.lng}`
-    const imageUrl = encodeURI(city.image)
+    const locationUrl = false //`https://maps.google.com/?q=${city.lat},${city.lng}`
+    const imageUrl = false // encodeURI(city.image)
     return (
       <div className="city">
         <div
@@ -129,8 +135,9 @@ export default class ViewCity extends Component {
     )
   }
 }
-
+/*
 ViewCity.propTypes = {
   city: PropTypes.object.isRequired,
   onRemove: PropTypes.func.isRequired,
 }
+*/
