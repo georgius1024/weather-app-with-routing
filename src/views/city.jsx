@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-no-target-blank */
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import dayjs from 'dayjs'
 import config from '../config'
@@ -36,10 +36,10 @@ class CityView extends Component {
   }
   onKeyDown(event) {
     if (event.key === 'Escape') {
-      window.history.go(-1) 
+      window.history.go(-1)
     }
   }
-  removeCity () {
+  removeCity() {
     window.history.go(-1)
     this.props.removeCity()
   }
@@ -95,8 +95,9 @@ class CityView extends Component {
             conditionIcon: current.condition.icon,
             conditionDesc: current.condition.text,
             humidity: current.humidity,
-            localTime: dayjs(localDate).format('ddd, DD MMM') + ', ' + localTime,
-            forecast: forecast.forecastday.map(forecastDay)
+            localTime:
+              dayjs(localDate).format('ddd, DD MMM') + ', ' + localTime,
+            forecast: forecast.forecastday.map(forecastDay),
           })
         })
     }
@@ -111,8 +112,12 @@ class CityView extends Component {
       <div className="city-view">
         <nav className="breadcrumb" aria-label="breadcrumbs">
           <ul>
-            <li><Link to="/">Main</Link></li>
-            <li className="is-active"><a >{city.name}</a></li>
+            <li>
+              <Link to="/">Main</Link>
+            </li>
+            <li className="is-active">
+              <a>{city.name}</a>
+            </li>
           </ul>
         </nav>
 
@@ -131,26 +136,25 @@ class CityView extends Component {
                   Open map
                 </a>
               </div>
-              <h1 className="title">
-                {city.name}
-              </h1>
-              <h2 className="subtitle">
-                {current.localTime}
-              </h2>
+              <h1 className="title">{city.name}</h1>
+              <h2 className="subtitle">{current.localTime}</h2>
               <div className="columns is-vcentered">
                 <div className="column mr4">
-                  <div className=" is-size-4">
-                    {current.temperature}°C
-                  </div>
+                  <div className=" is-size-4">{current.temperature}°C</div>
                 </div>
-                <div className="column" style={{paddingTop: 24}}>
-                  <span className="icon is-large" style={{whiteSpace: 'nowrap'}}>
-                    <img align="left" src={current.conditionIcon} alt="conditions" />
+                <div className="column" style={{ paddingTop: 24 }}>
+                  <span
+                    className="icon is-large"
+                    style={{ whiteSpace: 'nowrap' }}
+                  >
+                    <img
+                      align="left"
+                      src={current.conditionIcon}
+                      alt="conditions"
+                    />
                   </span>
                 </div>
-                <div className="column is-full">
-                  {current.conditionDesc}
-                </div>
+                <div className="column is-full">{current.conditionDesc}</div>
               </div>
               <table className="table is-narrow ">
                 <tbody>
@@ -163,7 +167,12 @@ class CityView extends Component {
                     <td>
                       <span className="mr4"> {current.wind}m/s</span>
                       <span className="icon is-small" title={current.direction}>
-                        <i className="fas fa-arrow-down" style={{ transform: 'rotate(' + current.degree + 'deg)' }}></i>
+                        <i
+                          className="fas fa-arrow-down"
+                          style={{
+                            transform: 'rotate(' + current.degree + 'deg)',
+                          }}
+                        />
                       </span>
                     </td>
                   </tr>
@@ -177,54 +186,47 @@ class CityView extends Component {
                   </tr>
                 </tbody>
               </table>
-              <div>
-              </div>
+              <div />
             </div>
           </div>
         </section>
         <section className="hero is-light">
           <div className="hero-body">
             <div className="container">
-              <p className="subtitle">
-                Forecast
-              </p>
+              <p className="subtitle">Forecast</p>
               <table className="table is-bordered is-condensed">
-               <tbody>
+                <tbody>
                   <tr>
                     <td>Date</td>
-                    <td>T<sub>min,</sub> °C</td>
-                    <td>T<sub>max,</sub> °C</td>
+                    <td>
+                      T<sub>min,</sub> °C
+                    </td>
+                    <td>
+                      T<sub>max,</sub> °C
+                    </td>
                     <td>Himidity, %</td>
                     <td colSpan="2">Weather conditions</td>
                   </tr>
-                  {
-                    forecast.map((day, index) => {
-                      return (
-                        <tr key={index}>
-                          <td className="right">
-                            {day.date}
-                          </td>
-                          <td className="right">
-                            {day.maxTemp}
-                          </td>
-                          <td className="right">
-                            {day.minTemp}
-                          </td>
-                          <td className="right">
-                            {day.humidity}
-                          </td>
-                          <td>
-                            <span className="icon">
-                              <img align="left" src={current.conditionIcon} alt="conditions" />
-                            </span>
-                          </td>
-                          <td>
-                            {current.conditionDesc}
-                          </td>
-                        </tr>
-                      )
-                    })
-                  }
+                  {forecast.map((day, index) => {
+                    return (
+                      <tr key={index}>
+                        <td className="right">{day.date}</td>
+                        <td className="right">{day.maxTemp}</td>
+                        <td className="right">{day.minTemp}</td>
+                        <td className="right">{day.humidity}</td>
+                        <td>
+                          <span className="icon">
+                            <img
+                              align="left"
+                              src={current.conditionIcon}
+                              alt="conditions"
+                            />
+                          </span>
+                        </td>
+                        <td>{current.conditionDesc}</td>
+                      </tr>
+                    )
+                  })}
                 </tbody>
               </table>
             </div>
@@ -236,7 +238,7 @@ class CityView extends Component {
               <div className="column">
                 <Link to="/" className="button is-primary">
                   <span className="icon is-medium mr4">
-                    <i className="fa fa-chevron-left"></i>
+                    <i className="fa fa-chevron-left" />
                   </span>
                   Back
                 </Link>
@@ -244,16 +246,15 @@ class CityView extends Component {
               <div className="column">
                 <a
                   className="button is-danger pull-right"
-                  onClick={this.removeCity}>
+                  onClick={this.removeCity}
+                >
                   <span className="icon  mr4">
                     <i className="fas fa-trash-alt" />
                   </span>
-
                   Delete city
                 </a>
               </div>
             </div>
-
           </div>
         </section>
       </div>
@@ -264,7 +265,7 @@ class CityView extends Component {
 const mapStateToProps = (state, ownProps) => {
   const cityId = ownProps.match.params.id
   return {
-    city: state.find(e => String(e.id) === cityId) || {}
+    city: state.find(e => String(e.id) === cityId) || {},
   }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {

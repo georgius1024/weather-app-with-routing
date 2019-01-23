@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { BrowserRouter, Route, Switch} from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Header from './components/header'
 import Footer from './components/footer'
 import CityView from './views/city'
 import IndexView from './views/index'
 import AddCityView from './views/add-city'
-import ErrorView  from './views/404'
+import ErrorView from './views/404'
 import config from './config'
-
 
 class App extends Component {
   componentDidMount() {
@@ -19,18 +18,18 @@ class App extends Component {
 
   render() {
     return (
-        <div>
-          <Header config={config} />
-          <BrowserRouter>
-            <Switch>
-              <Route exact path="/" component = { IndexView } />
-              <Route exact path="/city/:id" component = { CityView } />
-              <Route exact path="/add" component = { AddCityView } />
-              <Route exact path="*" component = { ErrorView } />
-            </Switch>
-          </BrowserRouter>
-          <Footer config={config} />
-        </div>
+      <div>
+        <Header config={config} />
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={IndexView} />
+            <Route exact path="/city/:id" component={CityView} />
+            <Route exact path="/add" component={AddCityView} />
+            <Route exact path="*" component={ErrorView} />
+          </Switch>
+        </BrowserRouter>
+        <Footer config={config} />
+      </div>
     )
   }
 
@@ -62,6 +61,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(
-  mapStateToProps
-)(App)
+export default connect(mapStateToProps)(App)

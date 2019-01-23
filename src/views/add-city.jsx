@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import config from '../config'
 import actions from '../store/actions'
 import './add-city.css'
@@ -37,7 +37,8 @@ class AddCityView extends Component {
   fetchTypeahead() {
     const value = this.state.value
     if (value.length > 3) {
-      const url = config.APIXU_URL +
+      const url =
+        config.APIXU_URL +
         '/search.json' +
         '?key=' +
         config.APIXU_KEY +
@@ -45,7 +46,7 @@ class AddCityView extends Component {
         value
       fetch(url)
         .then(response => response.json())
-        .then((cities) => {
+        .then(cities => {
           const typeahead = cities.map(city => {
             const parts = city.name.split(',')
             return {
@@ -72,7 +73,7 @@ class AddCityView extends Component {
           this.props.addCity(city)
           this.setState({
             value: '',
-            typeahead: []
+            typeahead: [],
           })
           window.history.go(-1)
         }
@@ -90,14 +91,18 @@ class AddCityView extends Component {
       <div className="add-city-view">
         <nav className="breadcrumb" aria-label="breadcrumbs">
           <ul>
-            <li><Link to="/">Main</Link></li>
-            <li className="is-active"><a>Add city</a></li>
+            <li>
+              <Link to="/">Main</Link>
+            </li>
+            <li className="is-active">
+              <a>Add city</a>
+            </li>
           </ul>
         </nav>
         <section className="hero is-primary">
           <div className="hero-body">
             <div className="container">
-            <div className="pull-right">
+              <div className="pull-right">
                 <Link to="/">
                   <span className="icon">
                     <i className="fas fa-lg fa-times" />
@@ -105,9 +110,7 @@ class AddCityView extends Component {
                 </Link>
               </div>
 
-              <h1 className="title">
-                Add city
-              </h1>
+              <h1 className="title">Add city</h1>
               <div className="control">
                 <input
                   className="input"
@@ -117,10 +120,9 @@ class AddCityView extends Component {
                   onChange={this.onChange}
                 />
                 {typeahead}
-
               </div>
             </div>
-          </div>  
+          </div>
         </section>
       </div>
     )
@@ -129,12 +131,12 @@ class AddCityView extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    cities: state
+    cities: state,
   }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    addCity: (city) => dispatch(addCityAction(city)),
+    addCity: city => dispatch(addCityAction(city)),
   }
 }
 
