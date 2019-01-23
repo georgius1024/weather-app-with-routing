@@ -4,22 +4,64 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 class IndexView extends Component {
+  constructor(p, c) {
+    super(p, c)
+    this.setState({ search: '' })
+    this.onChange = this.onChange.bind(this)
+  }
+  onChange(event) {
+    this.setState({ search: event.target.value })
+  }
+
   render() {
-    const cities = this.props.cities.map((city, index) => {
-      return (
-        <li key={index}>
-          <Link to={`/city/${city.id}/`}>{city.fullName}</Link>
-        </li>
-      )
-    })
+    const { search } = this.state || {}
+    const cities = this.props.cities
+      .map((city, index) => {
+        if (
+          !search ||
+          city.fullName.toLowerCase().includes(search.toLowerCase())
+        ) {
+          return (
+            <li key={index}>
+              <Link to={`/city/${city.id}/`}>{city.fullName}</Link>
+            </li>
+          )
+        } else {
+          return false
+        }
+      })
+      .filter(item => Boolean(item))
 
     return (
       <div className="columns">
         <div className="column" style={{ padding: '16px' }}>
-          <aside className="menu">
-            {cities.length ? <p className="menu-label">Select city</p> : ''}
+          <div className="control" style={{ margin: '16px' }}>
+            <input
+              className="input"
+              type="text"
+              placeholder="Enter city name"
+              value={search}
+              onChange={this.onChange}
+            />
+          </div>
 
-            <ul className="menu-list">{cities}</ul>
+          <aside className="menu">
+            {cities.length ? (
+              <div>
+                <p className="menu-label">Select city</p>
+                <ul className="menu-list">{cities}</ul>
+              </div>
+            ) : (
+              false
+            )}
+            {!cities.length && search ? (
+              <ul className="menu-list">
+                <li>Search string "{search}" not found in list</li>
+              </ul>
+            ) : (
+              false
+            )}
+
             {cities.length ? (
               <div className="menu-label">
                 <hr />
