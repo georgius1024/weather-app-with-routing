@@ -1,6 +1,7 @@
-.form {
-  padding: 32px;
+.add-city-view {
+  padding: 16px;
 }
+
 .typeahead {
   padding: 2px;
   height: 300px;

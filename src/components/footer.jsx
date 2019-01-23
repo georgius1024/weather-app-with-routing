@@ -9,6 +9,7 @@ export default props => {
           href={props.config.contactUrl}
           target="_blank"
           className="has-text-white"
+          rel="noopener"
         >
           {props.config.copyright}
         </a>

@@ -8,7 +8,7 @@ function cityReducer(state = [], action) {
       cities.push(city)
       return cities
     case consts.removeCity:
-      return [...state].filter(e => e.id !== action.payload)
+      return [...state].filter(e => String(e.id) !== action.payload)
   }
   return state
 }
