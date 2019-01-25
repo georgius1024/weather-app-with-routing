@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 class IndexView extends Component {
   constructor(p, c) {
     super(p, c)
-    this.setState({ search: '' })
+    this.state = { search: '' }
     this.onChange = this.onChange.bind(this)
   }
   onChange(event) {
