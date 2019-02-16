@@ -1,7 +1,7 @@
 {
   "main.css": "https://georgius1024.github.io/weather-app-with-routing/static/css/main.7e1f4cb1.chunk.css",
-  "main.js": "https://georgius1024.github.io/weather-app-with-routing/static/js/main.e888d769.chunk.js",
-  "main.js.map": "https://georgius1024.github.io/weather-app-with-routing/static/js/main.e888d769.chunk.js.map",
+  "main.js": "https://georgius1024.github.io/weather-app-with-routing/static/js/main.f1db5815.chunk.js",
+  "main.js.map": "https://georgius1024.github.io/weather-app-with-routing/static/js/main.f1db5815.chunk.js.map",
   "static/css/1.bfe95897.chunk.css": "https://georgius1024.github.io/weather-app-with-routing/static/css/1.bfe95897.chunk.css",
   "static/js/1.1c89be9b.chunk.js": "https://georgius1024.github.io/weather-app-with-routing/static/js/1.1c89be9b.chunk.js",
   "static/js/1.1c89be9b.chunk.js.map": "https://georgius1024.github.io/weather-app-with-routing/static/js/1.1c89be9b.chunk.js.map",
@@ -11,6 +11,6 @@
   "static/media/Weather-PNG-File.png": "https://georgius1024.github.io/weather-app-with-routing/static/media/Weather-PNG-File.3d7b78de.png",
   "static/css/main.7e1f4cb1.chunk.css.map": "https://georgius1024.github.io/weather-app-with-routing/static/css/main.7e1f4cb1.chunk.css.map",
   "index.html": "https://georgius1024.github.io/weather-app-with-routing/index.html",
-  "precache-manifest.27bb639a3afe9956c8524414ed768c25.js": "https://georgius1024.github.io/weather-app-with-routing/precache-manifest.27bb639a3afe9956c8524414ed768c25.js",
+  "precache-manifest.59067bef672342a2dd0fc9be0a3afe17.js": "https://georgius1024.github.io/weather-app-with-routing/precache-manifest.59067bef672342a2dd0fc9be0a3afe17.js",
   "service-worker.js": "https://georgius1024.github.io/weather-app-with-routing/service-worker.js"
 }
