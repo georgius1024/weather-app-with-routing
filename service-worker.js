@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "https://georgius1024.github.io/weather-app-with-routing/precache-manifest.59067bef672342a2dd0fc9be0a3afe17.js"
+  "https://georgius1024.github.io/weather-app-with-routing/precache-manifest.6b80f0492fafef14c0e10293964918aa.js"
 );
 
 workbox.clientsClaim();
