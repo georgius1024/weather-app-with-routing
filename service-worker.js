@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/weather-app-with-routing/precache-manifest.4cd27a26f760da47a436c1d26aa6adca.js"
+  "https://georgius1024.github.io/weather-app-with-routing/precache-manifest.27bb639a3afe9956c8524414ed768c25.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/weather-app-with-routing/index.html", {
+workbox.routing.registerNavigationRoute("https://georgius1024.github.io/weather-app-with-routing/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
