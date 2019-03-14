@@ -20,7 +20,7 @@ class App extends Component {
     return (
       <div>
         <Header config={config} />
-        <BrowserRouter>
+        <BrowserRouter basename="weather-app-with-routing">
           <Switch>
             <Route exact path="/" component={IndexView} />
             <Route exact path="/city/:id" component={CityView} />
