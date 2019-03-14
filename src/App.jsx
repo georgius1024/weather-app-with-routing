@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { HashRouter, Route, Switch } from 'react-router-dom'
 import Header from './components/header'
 import Footer from './components/footer'
 import CityView from './views/city'
@@ -20,14 +20,14 @@ class App extends Component {
     return (
       <div>
         <Header config={config} />
-        <BrowserRouter basename="weather-app-with-routing">
+        <HashRouter>
           <Switch>
             <Route exact path="/" component={IndexView} />
             <Route exact path="/city/:id" component={CityView} />
             <Route exact path="/add" component={AddCityView} />
             <Route exact path="*" component={ErrorView} />
           </Switch>
-        </BrowserRouter>
+        </HashRouter>
         <Footer config={config} />
       </div>
     )
