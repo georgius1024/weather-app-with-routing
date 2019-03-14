@@ -44,15 +44,14 @@ class CityView extends Component {
     this.props.removeCity()
   }
   static shouldComponentUpdate(nextProps, prevState) {
-    if (nextProps.city.name !== this.props.city.name) {
-      this.requestApi(nextProps.city.name)
+    if (nextProps.city.id !== this.props.city.id) {
       return true
     }
     return false
   }
   componentDidUpdate(prevProps, prevState, snapshot) {
     // Оптимизация, а без нее - бесконечный цикл запросов
-    if (prevProps.city.name !== this.props.city.name) {
+    if (prevProps.city.id !== this.props.city.id) {
       this.requestApi()
     }
   }
