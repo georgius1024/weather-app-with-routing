@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import './index.css'
 
 class IndexView extends Component {
   constructor(p, c) {
@@ -34,12 +35,12 @@ class IndexView extends Component {
 
     return (
       <div className="columns">
-        <div className="column" style={{ padding: '16px' }}>
-          <div className="control" style={{ margin: '16px' }}>
+        <div className="column">
+          <div className="control ma">
             <input
               className="input"
               type="text"
-              placeholder="Enter city name"
+              placeholder="Find city"
               value={search}
               onChange={this.onChange}
             />
@@ -48,38 +49,34 @@ class IndexView extends Component {
           <aside className="menu">
             {cities.length ? (
               <div>
-                <p className="menu-label">Select city</p>
+                <p className="menu-label ml">Select city</p>
                 <ul className="menu-list">{cities}</ul>
               </div>
             ) : (
-              false
+              (search 
+                ?
+                <div className="ml">
+                  Search string "{search}" not found in list
+                </div>
+                : 
+                <div className="ml">
+                  No city added to list yet. Click <Link to="/add">here</Link> to add some
+                </div>
+              )
             )}
-            {!cities.length && search ? (
-              <ul className="menu-list">
-                <li>Search string "{search}" not found in list</li>
-              </ul>
-            ) : (
-              false
-            )}
-
             {cities.length ? (
-              <div className="menu-label">
+              <div className="menu-list">
                 <hr />
-              </div>
-            ) : (
-              ''
-            )}
-
-            <ul className="menu-list">
-              <li>
                 <Link to="/add">
                   <span className="icon">
                     <i className="fas fa-plus" />
                   </span>
                   Add city
                 </Link>
-              </li>
-            </ul>
+              </div>
+            ) : (
+              ''
+            )}
           </aside>
         </div>
       </div>
